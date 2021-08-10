@@ -1,4 +1,4 @@
-# **PROJETO: HelloWorldLaravel**
+# **PROJETO: CrudLaravel**
 Criando o primeiro repositório de exemplo no GitHub.
 
 ## **Desenvolvido por:** André Vinícius Matioski 
