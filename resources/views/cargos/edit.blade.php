@@ -1,4 +1,4 @@
-@extends('pacientes.layout')
+@extends('cargos.layout')
 
 @section('title',__('Editar (CRUD Laravel)'))
 
@@ -15,8 +15,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('Editar (CRUD Laravel)')</span>
-                        <a href="{{ url('pacientes') }}" class="btn-info btn-sm">
+                        <span>@lang('Editar cargo')</span>
+                        <a href="{{ url('cargos') }}" class="btn-info btn-sm">
                             <i class="fa fa-arrow-left"></i> @lang('Voltar')
                         </a>
                     </div>
@@ -28,16 +28,16 @@
                     </div>
                     @endif
 
-                    {!! Form::open(['action' => ['PacienteController@update',$paciente->id], 'method' => 'PUT'])!!}
+                    {!! Form::open(['action' => ['CargoController@update',$cargo->id], 'method' => 'PUT'])!!}
 
                     <div class="form-group">
-                        {!! Form::label(__('Nome do Paciente:')) !!}
-                        {!! Form::text("nome", $paciente->nome ,["class"=>"form-control","required"=>"required"]) !!}
+                        {!! Form::label(__('Nome do Cargo:')) !!}
+                        {!! Form::text("nome_cargo", $cargo->nome_cargo, ["class"=>"form-control","required"=>"required"]) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label(__('Gênero:')) !!}
-                        {!! Form::text("genero", $paciente->genero ,["class"=>"form-control mmss","required"=>"required"]) !!}
+                        {!! Form::label(__('Descrição:')) !!}
+                        {!! Form::text("desc_cargo", $cargo->desc_cargo, ["class"=>"form-control","required"=>"required"]) !!}
                     </div>
 
                     <div class="well well-sm clearfix">

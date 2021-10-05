@@ -1,4 +1,4 @@
-@extends('pacientes.layout')
+@extends('convenios.layout')
 
 @section('title',__('Criar (CRUD Laravel)'))
 
@@ -15,8 +15,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('Criar (CRUD Laravel)')</span>
-                        <a href="{{ url('pacientes') }}" class="btn-info btn-sm">
+                        <span>@lang('Novo convênio')</span>
+                        <a href="{{ url('convenios') }}" class="btn-info btn-sm">
                             <i class="fa fa-arrow-left"></i> @lang('Voltar')
                         </a>
                     </div>
@@ -28,16 +28,36 @@
                     </div>
                     @endif
 
-                    {!! Form::open(['action' =>'PacienteController@store', 'method' => 'POST'])!!}
+                    {!! Form::open(['action' =>'ConvenioController@store', 'method' => 'POST'])!!}
 
                     <div class="form-group">
-                        {!! Form::label(__('Nome do Paciente:')) !!}
-                        {!! Form::text("nome", null ,["class"=>"form-control","required"=>"required"]) !!}
+                        {!! Form::label(__('Nome do convênios:')) !!}
+                        {!! Form::text("nome_conv", null ,["class"=>"form-control","required"=>"required"]) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label(__('Gênero:')) !!}
-                        {!! Form::text("genero", null ,["class"=>"form-control","required"=>"required"]) !!}
+                        {!! Form::label(__('Telefone:')) !!}
+                        {!! Form::text("fone_cov", null ,["class"=>"form-control","required"=>"required"]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label(__('Site:')) !!}
+                        {!! Form::text("site_conv", null ,["class"=>"form-control","required"=>"required"]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label(__('Contato:')) !!}
+                        {!! Form::text("contato_conv", null ,["class"=>"form-control","required"=>"required"]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label(__('--:')) !!}
+                        {!! Form::text("perccons_conv", null ,["class"=>"form-control","required"=>"required"]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label(__('--:')) !!}
+                        {!! Form::text("percexame_conv", null ,["class"=>"form-control","required"=>"required"]) !!}
                     </div>
 
                     <div class="well well-sm clearfix">

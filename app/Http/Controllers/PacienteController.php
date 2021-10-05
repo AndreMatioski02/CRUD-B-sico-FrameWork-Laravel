@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Paciente;
 
 class PacienteController extends Controller
 {
@@ -13,10 +14,12 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //Obtendo os dados de todos os pacientes
+        // obtendo os dados de todos os pacientes
         $pacientes = Paciente::all();
-        // Chamando a tela e enviando  objeto $pacientes como parâmetro
-        return view('pacientes.index', compact($pacientes));
+        // chamando a tela e enviando o objeto $pacientes
+        // como parâmetro
+        return view('pacientes.index', compact('pacientes'));
+        dd($pacientes);
     }
 
     /**
@@ -26,8 +29,8 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        //Chamando a tela para o cadastro de pacientes
-        return view('pacientes.create');
+        // chamando a tela para o cadastro de pacientes
+        return view ('pacientes.create');
     }
 
     /**
@@ -38,15 +41,15 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        // Criando regras para validação
-        $validadeData = $request->validade([
-            'nome'    => 'required|max:35',
-            'genero'  => 'required'
+        // criando regras para validação
+        $validateData = $request->validate([
+            'nome'      =>      'required|max:35',
+            'genero'    =>      'required|max:35'
         ]);
-
-        // Executando método para a gravação do registro
-        $paciente = Paciente::create($validadeData);
-        // Redirecionando para a tela principal do módulo de pacientes
+        // executando o método para a gravação do registro
+        $paciente = Paciente::create($validateData);
+        // redirecionando para a tela principal do módulo
+        // de pacientes
         return redirect('/pacientes')->with('success','Dados adicionados com sucesso!');
     }
 
@@ -58,7 +61,12 @@ class PacienteController extends Controller
      */
     public function show($id)
     {
-        //
+        // criando um objeto para receber o resultado
+        // da busca de registro/objeto específico
+        $paciente = Paciente::findOrFail($id);
+        // retornando a tela de visualização com o
+        // objeto recuperado
+        return view('pacientes.show',compact('paciente'));
     }
 
     /**
@@ -69,7 +77,12 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        // criando um objeto para receber o resultado
+        // da busca de registro/objeto específico
+        $paciente = Paciente::findOrFail($id);
+        // retornando a tela de edição com o
+        // objeto recuperado
+        return view('pacientes.edit', compact('paciente'));
     }
 
     /**
@@ -81,7 +94,18 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // criando um objeto para testar/aplicar 
+        // validações nos dados da requisição
+        $validateData = $request->validate([
+            'nome'      =>      'required|max:35',
+            'genero'    =>      'required|max:35'
+        ]);
+        // criando um objeto para receber o resultado
+        // da persistência (atualização) dos dados validados 
+        Paciente::whereId($id)->update($validateData);
+        // redirecionando para o diretório raiz (index)
+        return redirect('/pacientes')->with('success', 
+        'Dados atualizados com sucesso!');
     }
 
     /**
@@ -92,6 +116,12 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // localizando o objeto que será excluído
+        $paciente = Paciente::findOrFail($id);
+        // realizando a exclusão
+        $paciente->delete();
+        // redirecionando para o diretório raiz (index)
+        return redirect('/pacientes')->with('success', 
+        'Dados removidos com sucesso!');
     }
 }

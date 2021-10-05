@@ -1,4 +1,4 @@
-@extends('pacientes.layout')
+@extends('convenios.layout')
 
 @section('title',__('(CRUD Laravel)'))
 
@@ -15,9 +15,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('Listagem de Pacientes')</span>
-                        <a href="{{ url('pacientes/create') }}" class="btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> @lang('Novo Paciente')
+                        <span>@lang('Listagem de Convênios')</span>
+                        <a href="{{ url('convenios/create') }}" class="btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> @lang('Novo Convênio')
                         </a>
                     </div>
                 </div>
@@ -32,29 +32,37 @@
                         <thead>
                             <tr>
                                 <td>ID</td>
-                                <td>@lang('Nome do Paciente')</td>
-                                <td>@lang('Gênero')</td>
-                                <td colspan="3" class="text-center">@lang('Ações')</td>
+                                <td>@lang('Nome Convênio')</td>
+                                <td>@lang('Telefone')</td>
+                                <td>@lang('Site')</td>
+                                <td>@lang('Contato')</td>
+                                <td>@lang('--')</td>
+                                <td>@lang('--')</td>
+                                <td colspan="7" class="text-center">@lang('Ações')</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pacientes as $paciente)
+                            @foreach($convenios as $convenio)
                             <tr>
-                                <td>{{$paciente->id}}</td>
-                                <td>{{$paciente->nome}}</td>
-                                <td>{{$paciente->genero}}</td>
+                                <td>{{$convenio->id}}</td>
+                                <td>{{$convenio->nome_conv}}</td>
+                                <td>{{$convenio->fone_cov}}</td>
+                                <td>{{$convenio->site_conv}}</td>
+                                <td>{{$convenio->contato_conv}}</td>
+                                <td>{{$convenio->perccons_conv}}</td>
+                                <td>{{$convenio->percexame_conv}}</td>
                                 <td class="text-center p-0 align-middle" width="70">
-                                    <a href="{{ route('pacientes.show', $paciente->id)}}"
+                                    <a href="{{ route('convenios.show', $convenio->id)}}"
                                         class="btn btn-info btn-sm">@lang('Abrir')
                                     </a>
                                 </td>
                                 <td class="text-center p-0 align-middle" width="70">
-                                    <a href="{{ route('pacientes.edit', $paciente->id)}}"
+                                    <a href="{{ route('convenios.edit', $convenio->id)}}"
                                         class="btn btn-primary btn-sm">@lang('Editar')
                                     </a>
                                 </td>
                                 <td class="text-center p-0 align-middle" width="70">
-                                    <form action="{{ route('pacientes.destroy', $paciente->id)}}" method="post">
+                                    <form action="{{ route('convenios.destroy', $convenio->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Excluir</button>

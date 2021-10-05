@@ -1,6 +1,6 @@
-@extends('pacientes.layout')
+@extends('consultas.layout')
 
-@section('title',__('Editar (CRUD Laravel)'))
+@section('title',__('Criar (CRUD Laravel)'))
 
 @push('css')
 <style>
@@ -15,34 +15,44 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('Editar (CRUD Laravel)')</span>
-                        <a href="{{ url('pacientes') }}" class="btn-info btn-sm">
+                        <span>@lang('Criar (CRUD Laravel)')</span>
+                        <a href="{{ url('consultas') }}" class="btn-info btn-sm">
                             <i class="fa fa-arrow-left"></i> @lang('Voltar')
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('success'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+                        {{ session('success') }}
                     </div>
                     @endif
 
-                    {!! Form::open(['action' => ['PacienteController@update',$paciente->id], 'method' => 'PUT'])!!}
+                    {!! Form::open(['action' =>'ConsultaController@store', 'method' => 'POST'])!!}
 
                     <div class="form-group">
                         {!! Form::label(__('Nome do Paciente:')) !!}
-                        {!! Form::text("nome", $paciente->nome ,["class"=>"form-control","required"=>"required"]) !!}
+                        {!! Form::select("paciente_id", $pacientes, null ,["class"=>"form-control","required"=>"required"]) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label(__('Gênero:')) !!}
-                        {!! Form::text("genero", $paciente->genero ,["class"=>"form-control mmss","required"=>"required"]) !!}
+                        {!! Form::label(__('Nome do Médico:')) !!}
+                        {!! Form::select("medico_id", $medicos, null ,["class"=>"form-control","required"=>"required"]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label(__('Data:')) !!}
+                        {!! Form::text("data", null ,["class"=>"form-control","required"=>"required"]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label(__('Hora:')) !!}
+                        {!! Form::text("hora", null ,["class"=>"form-control","required"=>"required"]) !!}
                     </div>
 
                     <div class="well well-sm clearfix">
                         <button class="btn btn-success pull-right" title="@lang('Salvar')"
-                            type="submit">@lang('Alterar')</button>
+                            type="submit">@lang('Adicionar')</button>
                     </div>
 
                     {!! Form::close() !!}

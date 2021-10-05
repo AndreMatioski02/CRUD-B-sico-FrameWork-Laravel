@@ -1,6 +1,6 @@
-@extends('pacientes.layout')
+@extends('medicos.layout')
 
-@section('title',__($paciente->nome . ': CRUD Laravel'))
+@section('title',__($medico->nome . ': CRUD Laravel'))
 
 @push('css')
 <style>
@@ -23,8 +23,8 @@ table th{
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span><span class="text-info">{{$paciente->nome}}</span>: (@lang('CRUD Laravel'))</span>
-                        <a href="{{ url('pacientes') }}" class="btn-info btn-sm">
+                        <span><span class="text-info">{{$medico->nome}}</span>: (@lang('CRUD Laravel'))</span>
+                        <a href="{{ url('medicos') }}" class="btn-info btn-sm">
                             <i class="fa fa-arrow-left"></i> @lang('Voltar')
                         </a>
                     </div>
@@ -41,23 +41,23 @@ table th{
                         <tbody>
                         <tr>
                           <th align="left"><strong>ID:</strong></th>
-                          <th align="left">{{$paciente->id}}</th>
+                          <th align="left">{{$medico->id}}</th>
                         </tr>
                         <tr>
                             <th align="left"><strong>@lang('Nome do Paciente')</strong>:</th>
-                            <th align="left">{{$paciente->nome}}</th>
+                            <th align="left">{{$medico->nome}}</th>
                         </tr>
                         <tr>
-                            <th align="left"><strong>@lang('Gênero')</strong>:</th>
-                            <th align="left">{{$paciente->genero}}</th>
+                            <th align="left"><strong>@lang('CRM')</strong>:</th>
+                            <th align="left">{{$medico->crm}}</th>
                           </tr>
                           <tr>
                             <th align="left"><strong>@lang('Adicionado')</strong>:</th>
-                            <th align="left">{{$paciente->created_at}}</th>
+                            <th align="left">{{$medico->created_at}}</th>
                           </tr>
                           <tr>
                               <th align="left"><strong>@lang('Atualizado')</strong>:</th>
-                              <th align="left">{{$paciente->updated_at}}</th>
+                              <th align="left">{{$medico->updated_at}}</th>
                           </tr>
                         </table>
                 </div>

@@ -1,4 +1,5 @@
-@extends('pacientes.layout')
+  
+@extends('consultas.layout')
 
 @section('title',__('(CRUD Laravel)'))
 
@@ -15,9 +16,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('Listagem de Pacientes')</span>
-                        <a href="{{ url('pacientes/create') }}" class="btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> @lang('Novo Paciente')
+                        <span>@lang('Listagem de Consultas')</span>
+                        <a href="{{ url('consultas/create') }}" class="btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> @lang('Nova Consulta')
                         </a>
                     </div>
                 </div>
@@ -33,28 +34,32 @@
                             <tr>
                                 <td>ID</td>
                                 <td>@lang('Nome do Paciente')</td>
-                                <td>@lang('Gênero')</td>
+                                <td>@lang('Nome do Medico')</td>
+                                <td>@lang('Data')</td>
+                                <td>@lang('Hora')</td>
                                 <td colspan="3" class="text-center">@lang('Ações')</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pacientes as $paciente)
+                            @foreach($consultas as $consulta)
                             <tr>
-                                <td>{{$paciente->id}}</td>
-                                <td>{{$paciente->nome}}</td>
-                                <td>{{$paciente->genero}}</td>
+                                <td>{{$consulta->id}}</td>
+                                <td>{{$consulta->paciente->nome}}</td>
+                                <td>{{$consulta->medico->nome}}</td>
+                                <td>{{$consulta->data}}</td>
+                                <td>{{$consulta->hora}}</td>
                                 <td class="text-center p-0 align-middle" width="70">
-                                    <a href="{{ route('pacientes.show', $paciente->id)}}"
+                                    <a href="{{ route('consultas.show', $consulta->id)}}"
                                         class="btn btn-info btn-sm">@lang('Abrir')
                                     </a>
                                 </td>
                                 <td class="text-center p-0 align-middle" width="70">
-                                    <a href="{{ route('pacientes.edit', $paciente->id)}}"
+                                    <a href="{{ route('consultas.edit', $consulta->id)}}"
                                         class="btn btn-primary btn-sm">@lang('Editar')
                                     </a>
                                 </td>
                                 <td class="text-center p-0 align-middle" width="70">
-                                    <form action="{{ route('pacientes.destroy', $paciente->id)}}" method="post">
+                                    <form action="{{ route('consultas.destroy', $consulta->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Excluir</button>

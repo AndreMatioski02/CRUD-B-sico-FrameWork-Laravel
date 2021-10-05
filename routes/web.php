@@ -17,5 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::resource('pacientes', 'PacienteController');
+
+Route::resource('medicos', 'MedicoController');
+
+Route::resource('consultas', 'ConsultaController');
+
+Route::resource('cargos', 'CargoController');
+
+Route::resource('convenios', 'ConvenioController');
+
+Route::resource('especialidades', 'EspecialidadeController');
+
+Route::resource('tipoExames', 'TipoExameController');
